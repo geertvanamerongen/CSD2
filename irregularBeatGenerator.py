@@ -9,9 +9,9 @@ import chanceGrid
 import midiParser
 import threadingTimer
 
-bpm = 120
-beatsPerBar = 4
-beatValue = 4
+bpm = 0
+beatsPerBar = 0
+beatValue = 0
 
 allowedBeatValues = [2,4,8,16]
 
@@ -154,8 +154,6 @@ def createBeat():
 
       if (hatGrid.getSteps()[i] % 4) == 3:
          hatGrid.updateChance(hatGrid.getSteps()[i], 2)
-   
-   print(hatGrid.getChances())
 
    #pick cycle
    while(len(hatSequence) < hatAmount):
@@ -168,10 +166,6 @@ def createBeat():
          #check if step is in same 4 step window and if so, decrease chance of being picked
          if math.ceil(y/4) == math.ceil(hatArr[i]/4):
             hatGrid.updateChance(hatArr[i], 0.1)
-
-   kickSequence.sort()
-   snareSequence.sort()
-   hatSequence.sort()
 
 def inputHandler():
    global isPaused, beatCounter, bpm, beatsPerBar, beatValue
@@ -293,6 +287,7 @@ inputBpm()
 inputBeatsPerBar()
 inputBeatValue()
 
+print("Generating beat")
 # run program
 createBeat()
 startNewBeatTimer()
