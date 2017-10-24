@@ -3,16 +3,24 @@ from random import randint
 
 class ChanceGrid:
    def __init__(self, arr):
-      self.stepArr = arr
+      self.stepArr = []
       self.chanceArr = []
       
       #init chance array with even chances
       for i in range(len(arr)):
-         self.chanceArr.append(round(100 / len(self.stepArr)))
+         self.stepArr.append(arr[i])
+         self.chanceArr.append(round(100 / len(arr)))
 
       #make sure total chance is 100%
+      # print("stepArr: "+str(self.stepArr))
+      # print("chanceArr: "+str(self.chanceArr))
       self._roundToHundred()
 
+   def getSteps(self):
+   	  return self.stepArr
+
+   def getChances(self):
+   	  return self.chanceArr
 
    def updateChance(self, step, multiplier):
       #step index
